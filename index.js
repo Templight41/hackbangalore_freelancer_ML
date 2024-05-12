@@ -20,7 +20,7 @@ app.post("/extract-skills", async (req, res) => {
 })
 
 app.post("/compare-skills", (req, res) => {
-    //dummy data
+    //template data
     // const inputData = {
     //     freelancer: [{ id: "1", skills: ["html", "nodejs", "javascript"] }],
     //     client: [{
