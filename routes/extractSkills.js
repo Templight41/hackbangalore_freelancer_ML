@@ -5,9 +5,9 @@ const { GoogleGenerativeAI } = require("@google/generative-ai");
 // Access your API key as an environment variable (see "Set up your API key" above)
 const genAI = new GoogleGenerativeAI(process.env.API_KEY);
 
-const description = "Need a django python developer with 6 years of experience and MySQL/postgresql/mongodb database experience of 3 years"
+// const description = "Need a django python developer with 6 years of experience and MySQL/postgresql/mongodb database experience of 3 years"
 
-async function run() {
+module.exports = async function run(description) {
   // For text-only input, use the gemini-pro model
   const model = genAI.getGenerativeModel({ model: "gemini-pro"});
 
@@ -27,6 +27,5 @@ async function run() {
   // Now you can parse jsonString to JSON object
   const jsonObject = JSON.parse(jsonString);
   console.log(jsonObject);
+  return jsonObject;
 }
-
-run();

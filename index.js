@@ -8,10 +8,19 @@ const compareSkills = require('./routes/compareSkills');
 const githubLangUsed = require('./routes/githubLangUsed');
 const githubRepoLang = require('./routes/githubRepoLang');
 const githubFrameworkUsed = require('./routes/githubFrameworkUsed');
+const extractSkills = require('./routes/extractSkills');
 
 
+
+app.post("/extract-skills", async (req, res) => {
+    const { description } = req.body;
+
+    const result = await extractSkills(description);
+    res.status(200).json(result);
+})
 
 app.post("/compare-skills", (req, res) => {
+    //dummy data
     // const inputData = {
     //     freelancer: [{ id: "1", skills: ["html", "nodejs", "javascript"] }],
     //     client: [{
@@ -37,11 +46,11 @@ app.post("/compare-skills", (req, res) => {
     const { skillSet } = req.body
 
     const result = compareSkills(skillSet);
-    res.json(result);
+    res.status(200).json(result);
 })
 
 
-app.post("/github-repo-lang", async (req, res) => {
+app.post("/api/github/github-repo-lang", async (req, res) => {
 
     const { username, token } = req.body;
 
@@ -51,7 +60,7 @@ app.post("/github-repo-lang", async (req, res) => {
 
 })
 
-app.post("/github-lang-used", async (req, res) => {
+app.post("/api/github/github-lang-used", async (req, res) => {
 
     const { username, token } = req.body;
 
@@ -60,7 +69,7 @@ app.post("/github-lang-used", async (req, res) => {
     res.status(200).json(response);
 })
 
-app.post("/github-framework-used", async (req, res) => {
+app.post("/api/github/github-framework-used", async (req, res) => {
 
     const { username, token } = req.body;
 
