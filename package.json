@@ -1,0 +1,25 @@
+{
+  "name": "hackbangalore_freelancer_ml",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "axios": "^1.6.8",
+    "bert-tokenizer": "^1.1.8",
+    "body-parser": "^1.20.2",
+    "compromise": "^14.13.0",
+    "csv-parser": "^3.0.0",
+    "express": "^4.19.2",
+    "natural": "^7.0.5",
+    "node-nlp": "^4.27.0",
+    "papaparse": "^5.4.1",
+    "stemmer": "^2.0.1",
+    "string-similarity": "^4.0.4"
+  }
+}
