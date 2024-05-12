@@ -19,33 +19,37 @@ app.post("/extract-skills", async (req, res) => {
     res.status(200).json(result);
 })
 
-app.post("/compare-skills", (req, res) => {
+app.post("/compare-skills", async (req, res) => {
     //template data
-    // const inputData = {
-    //     freelancer: [{ id: "1", skills: ["html", "nodejs", "javascript"] }],
-    //     client: [{
-    //         id: "client1",
-    //         projectTitle: "Title",
-    //         rate: "rate",
-    //         skills: ["html", "css", "javascript", "nodejs"]
-    //     },
-    //     {
-    //         id: "client2",
-    //         projectTitle: "Title",
-    //         rate: "rate",
-    //         skills: ["html", "css", "js", "react"]
-    //     },
-    //     {
-    //         id: "client3",
-    //         projectTitle: "Title",
-    //         rate: "rate",
-    //         skills: ["html", "css", "javascript", "angular"]
-    //     }]
-    // };
+    const inputData = {
+        freelancer: [{ id: "1", rate: 500, role: "web developer", skills: ["html", "css", "javascript"] }],
+        gigs: [{
+            id: "client1",
+            projectTitle: "backend development",
+            description: "need a backend developer with 5 years of experience in nodejs and mongodb",
+            rate: "600",
+            skills: ["html", "css", "javascript", "nodejs"]
+        },
+        {
+            id: "client2",
+            projectTitle: "frontend development",
+            rate: "400",
+            description: "need a frontend developer with 3 years of experience in react",
+            skills: ["html", "css", "js", "react"]
+        },
+        {
+            id: "client3",
+            projectTitle: "full stack development",
+            rate: "1000",
+            description: "need a full stack developer with 5 years of experience in angular and nodejs",
+            skills: ["html", "css", "javascript", "angular", "nodejs"]
+        }]
+    };
 
     const { skillSet } = req.body
 
-    const result = compareSkills(skillSet);
+    const result = await compareSkills(skillSet);
+
     res.status(200).json(result);
 })
 

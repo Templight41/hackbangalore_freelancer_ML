@@ -7,7 +7,10 @@ const genAI = new GoogleGenerativeAI(process.env.API_KEY);
 
 // const description = "Need a django python developer with 6 years of experience and MySQL/postgresql/mongodb database experience of 3 years"
 
+let count = 0;
+
 module.exports = async function run(description) {
+    count++;
   // For text-only input, use the gemini-pro model
   const model = genAI.getGenerativeModel({ model: "gemini-pro"});
 
@@ -18,14 +21,26 @@ module.exports = async function run(description) {
   const text = response.text()
   // console.log(text);
 
-  // Remove "```json" from the beginning
-  let jsonString = text.slice(7);
+  try {
 
-  // Remove "```" from the end
-  jsonString = jsonString.slice(0, -3);
-
-  // Now you can parse jsonString to JSON object
-  const jsonObject = JSON.parse(jsonString);
-  console.log(jsonObject);
-  return jsonObject;
+    // Remove "```json" from the beginning
+    let jsonString = text.slice(7);
+  
+    // Remove "```" from the end
+    jsonString = jsonString.slice(0, -3);
+  
+    // Now you can parse jsonString to JSON object
+    const jsonObject = JSON.parse(jsonString);
+    console.log(count)
+    console.log(jsonObject);
+    count = 0;
+    return jsonObject;
+    
+  }
+  catch (error) {
+    if(count <= 5) {
+        run(description);
+    }
+    console.log("Error: ", error);
+  }
 }
