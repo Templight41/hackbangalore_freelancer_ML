@@ -23,5 +23,5 @@ jobs:
         destination_branch: 'main'
         destination_folder: '/ML'
         user_email: 'armaanpasha3@gmail.com'
-        user_name: 'Armaan Pasha'
+        user_name: 'templight41'
         commit_message: 'ML commit'
